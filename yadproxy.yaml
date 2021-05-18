@@ -1,0 +1,17 @@
+uwsgi:
+  http-socket: 127.0.0.1:3081
+  socket-protocol: http
+  so-keepalive: 0
+  logformat: %(var.REMOTE_ADDR) %(var.REQUEST_METHOD) %(var.REQUEST_URI) %(status)
+  processes: 1
+  need-app: true
+  log-reopen: yes
+  reload-mercy: 5
+  buffer-size: 32768
+  die-on-term: true
+  pidfile: /run/yadproxy/yadproxy.pid
+  logto: /var/log/yadproxy/yadproxy.log
+  plugins: psgi
+  chdir: /var/lib/yadproxy
+  psgi: /var/lib/yadproxy/yadproxy.psgi
+  perl-local-lib: /var/lib/yadproxy/vendor_perl

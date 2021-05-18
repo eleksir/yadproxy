@@ -1,0 +1,4 @@
+data/oauth/**
+data/config.json
+data/fileindex/**
+vendor_perl/**
