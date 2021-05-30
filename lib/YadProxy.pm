@@ -96,9 +96,9 @@ sub DirList {
 		$index_of = '/' . $index_of;
 	}
 
-	push @output, "<html>";
+	push @output, '<html>';
 	push @output, sprintf '<head><title>Index of %s/</title></head>', $index_of;
-	push @output, "<body>";
+	push @output, '<body>';
 	push @output, sprintf '<h1>Index of %s/</h1><hr><pre><a href="../">../</a>', $index_of;
 
 	# попробуем отловить все каталоги, начинающиеся с запрошенного пути
@@ -187,8 +187,8 @@ sub DirList {
 		}
 	}
 
-	push @output, "</pre><hr></body>";
-	push @output, "</html>";
+	push @output, '</pre><hr></body>';
+	push @output, '</html>';
 	return ('200', 'text/html', join "\n", @output);
 }
 

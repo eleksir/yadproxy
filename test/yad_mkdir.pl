@@ -32,7 +32,7 @@ if ($c->{remote_dir} && $c->{remote_dir} ne '') {
 	$remote_dir = $c->{remote_dir};
 
 	$disk->createFolder (-path => $remote_dir, -recursive => 1) or do {
-		die "Невозможно создать каталог $c->{remote_dir} на Yandex.Диске";
+		croak "Невозможно создать каталог $c->{remote_dir} на Yandex.Диске";
 	};
 }
 

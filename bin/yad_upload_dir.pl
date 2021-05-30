@@ -70,7 +70,7 @@ sub wanted {
 
 		unless (defined $targets{$target}) {
 			unless ($disk->createFolder (-path => $target, -recursive => 1)) {
-				die "Невозможно создать каталог $c->{remote_dir} на Yandex.Диске";
+				die "Невозможно создать каталог $c->{remote_dir} на Yandex.Диске\n";
 			}
 
 			$targets{$target} = 1;
@@ -86,4 +86,5 @@ sub wanted {
 	}
 
 	sleep 3;
+	return;
 }

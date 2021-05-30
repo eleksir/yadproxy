@@ -34,7 +34,7 @@ if ($c->{remote_dir} && $c->{remote_dir} ne '') {
 }
 
 my $disk = Yandex::Disk->new ( -token => GetAccessToken );
-say Dumper $disk->fileInfo ( -path => sprintf ("%s/%s", $remote_dir, $file));
+say Dumper $disk->fileInfo ( -path => sprintf ('%s/%s', $remote_dir, $file));
 
 __END__
 # vim: set ft=perl noet ai ts=4 sw=4 sts=4:

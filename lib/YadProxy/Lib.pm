@@ -33,7 +33,7 @@ sub GetAccessToken {
 		my $refresh_token = $cache->get ('refresh_token');
 
 		unless (defined $refresh_token) {
-			$log->fatal ("No refresh_token found in base, please, register yaproxy application");
+			$log->fatal ('No refresh_token found in base, please, register yaproxy application');
 			exit 1;
 		}
 
@@ -66,7 +66,7 @@ sub RefreshAccessToken {
 	if (defined $token->{access_token}) {
 		return $token;
 	} else {
-		$log->fatal ("[FATAL] Unable to refresh access_token");
+		$log->fatal ('[FATAL] Unable to refresh access_token');
 		exit 1;
 	}
 }

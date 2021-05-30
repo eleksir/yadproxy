@@ -39,8 +39,7 @@ my $access_token = $cache->get ('access_token');
 if (defined $refresh_token && defined $access_token) {
 	printf "access_token:\n%s\n\nrefresh_token:\n%s\n", $access_token, $refresh_token;
 } else {
-	say "Что-то пошло не так, токены не нашлись, попробуйте их пере-получить через скрипт yad_get_token.pl";
-	exit 1;
+	die "Что-то пошло не так, токены не нашлись, попробуйте их пере-получить через скрипт yad_get_token.pl\n";
 }
 
 exit 0;

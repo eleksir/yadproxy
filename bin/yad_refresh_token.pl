@@ -47,7 +47,7 @@ if (defined $refresh_token) {
 	$cache->set ('refresh_token', $token->{refresh_token}, 'never');
 	$cache->set ('access_token', $token->{access_token}, $token->{expires_in} - 60);
 } else {
-	die "В локальной базе нет refresh token, возможно, для начала следует запустить yad_get_token.pl";
+	die "В локальной базе нет refresh token, возможно, для начала следует запустить yad_get_token.pl\n";
 }
 
 exit 0;

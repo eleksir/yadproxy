@@ -96,7 +96,7 @@ my %month = (
 	'09' => 'Sep',
 	'10' => 'Oct',
 	'11' => 'Nov',
-	'12' => 'Dec'
+	'12' => 'Dec',
 );
 
 foreach (@{$list}) {
@@ -135,7 +135,7 @@ foreach (@{$list}) {
 				}
 
 			} else {
-				warn "Yandex.Диск API вернуло неполные данные для $filename";
+				warn "Yandex.Диск API вернуло неполные данные для $filename\n";
 			}
 		}
 	}

@@ -22,16 +22,16 @@ sub LoadConf {
 	my $readlen = read $CH, $json, $len;
 
 	unless ($readlen) {
-		close $CH;                                   ## no critic (InputOutput::RequireCheckedSyscalls
+		close $CH;
 		die "[FATAL] Unable to read $c: $OS_ERROR\n";
 	}
 
 	if ($readlen != $len) {
-		close $CH;                                   ## no critic (InputOutput::RequireCheckedSyscalls
+		close $CH;
 		die "[FATAL] File $c is $len bytes on disk, but we read only $readlen bytes\n";
 	}
 
-	close $CH;                                       ## no critic (InputOutput::RequireCheckedSyscalls
+	close $CH;
 	my $j = JSON::XS->new->utf8->relaxed;
 	return $j->decode ($json);
 }
