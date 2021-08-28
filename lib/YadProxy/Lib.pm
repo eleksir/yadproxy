@@ -38,7 +38,7 @@ sub GetAccessToken {
 		}
 
 		my $token = RefreshAccessToken ($refresh_token);
-        # yad обычно выдаёт токен на год, скинем с этого 1 минуту :) чтобы уж точно
+		# yad обычно выдаёт токен на год, скинем с этого 1 минуту :) чтобы уж точно
 		$cache->set ('refresh_token', $token->{refresh_token}, 'never');
 		$cache->set ('access_token', $token->{access_token}, $token->{expires_in} - 60);
 		$access_token = $token->{access_token};

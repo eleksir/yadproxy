@@ -225,6 +225,22 @@ sub fileInfo {
     return $json_res;
 }
 
+sub fileInfoRaw {
+    my $self = shift;
+    my %opt = @_;
+    my $path = $opt{-path} || croak "Specify -path param";
+
+    my $param = '?path=' . uri_escape($path);
+    my $res = $self->__request('https://cloud-api.yandex.net/v1/disk/resources' . $param, 'GET');
+
+    my $code = $res->code;
+    if ($code ne '200') {
+        croak "Error on fileInfo. Error: " . $res->status_line;
+    }
+
+    return $res;
+}
+
 sub listFiles {
     my $self = shift;
     my %opt = @_;
@@ -263,6 +279,26 @@ sub listAllFiles {
     my $json_res = __fromJson($res->decoded_content);
 
     return $json_res->{items};
+}
+
+sub listAllFilesRaw {
+    my $self = shift;
+    my %opt = @_;
+    my $limit = $opt{-limit} || 999999;
+    my $media_type = $opt{-media_type};
+    my $offset = $opt{-offset};
+    $offset = 0 if not $offset;
+
+    my $param = "?limit=$limit&offset=$offset";
+    $param .= '&media_type=' . $media_type if $media_type;
+
+    my $res = $self->__request('https://cloud-api.yandex.net/v1/disk/resources/files' . $param, 'GET');
+    my $code = $res->code;
+    if ($code ne '200') {
+        croak "Error on listFiles. Error: " . $res->status_line;
+    }
+
+    return $res;
 }
 
 sub lastUploadedFiles {

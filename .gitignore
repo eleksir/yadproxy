@@ -1,4 +1,7 @@
+.idea/**
+_Deparsed_XSubs.pm
 data/oauth/**
+data/cache/**
 data/config.json
 data/fileindex/**
 vendor_perl/**

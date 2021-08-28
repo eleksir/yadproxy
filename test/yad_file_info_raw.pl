@@ -8,6 +8,8 @@ use open qw (:std :utf8);
 use English qw ( -no_match_vars );
 use version; our $VERSION = qw (1.0);
 
+use Carp qw (croak);
+
 my $workdir;
 
 # сменим рабочий каталог
@@ -20,37 +22,21 @@ BEGIN {
 }
 
 use lib ("$workdir/lib", "$workdir/vendor_perl", "$workdir/vendor_perl/lib/perl5");
-use File::Basename;
 use YadProxy::Conf qw (LoadConf);
 use YadProxy::Lib qw (GetAccessToken);
 use Yandex::Disk;
 use Data::Dumper;
-use Carp qw (croak);
 
 my $c = LoadConf ();
-my $remote_dir = '/';
-my $file = 'test/test_file.txt';
-
-my $disk = Yandex::Disk->new ( -token => GetAccessToken );
+my $remote_dir = '';
+my $file = 'test_file.txt';
 
 if ($c->{remote_dir} && $c->{remote_dir} ne '') {
-	$remote_dir = $c->{remote_dir};
-
-	$disk->createFolder (
-		-path => $remote_dir,
-		-recursive => 1
-	) or do {
-		croak "Невозможно создать каталог $c->{remote_dir} на Yandex.Диске";
-	};
+        $remote_dir = $c->{remote_dir};
 }
 
-$disk->uploadFile (
-	-file => $file,
-	-remote_path => $remote_dir,
-	-overwrite => 1
-) or croak "Не могу зааплодить файл в каталог $remote_dir на Yandex.Диске";
-
-say Dumper $disk->listFiles (-path =>$remote_dir);
+my $disk = Yandex::Disk->new ( -token => GetAccessToken );
+say Dumper $disk->fileInfoRaw ( -path => sprintf ('%s/%s', $remote_dir, $file));
 
 __END__
 # vim: set ft=perl noet ai ts=4 sw=4 sts=4:
